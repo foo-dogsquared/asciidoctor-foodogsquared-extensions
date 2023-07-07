@@ -1,0 +1,36 @@
+= Changelog
+:toc:
+
+:github-repo: asciidoctor-foodogsquared-extensions
+:commit-url: https://github.com/foo-dogsquared/{github-repo}/commit
+
+
+The guidelines for writing this changelog is based from link:https://common-changelog.org[Common Changelog].
+
+
+== [1.0.0] - 2023-07-07
+
+The initial version of the extension set.
+
+=== Added
+
+* Add `man:` inline macro for online manual pages (link:{commit-url}/4201e1c6e8a028618ab4cb4c6e54af5c3990aa27[`4201e1c6e`] footnote:[Hehe...]) (Gabriel Arazas)
+* Add `rfc:` inline macro for IETF RFCs (link:{commit-url}/0def42d0675dc73ead13491d61ec0220d888462c[`0def42d0`]) (Gabriel Arazas)
+* Add `swh:` inline macro for linking SWHIDs (link:{commit-url}/e18383275ed691d992e5894301534a869e0ccded[`e18383275`]) (Gabriel Arazas)
+* Add `github:` inline macro for adding GitHub links (link:{commit-url}/d846aaa15990ed009261caa6f9d9f1b72a09a727[`d846aaa1`]) (Gabriel Arazas)
+* Add `gitlab:` inline macro for adding GitLab links (link:{commit-url}/e36e3ef452a34f985e974fc56474da1124256649[`e36e3ef45`]) (Gabriel Arazas)
+* Add `wikipedia:` inline macro for adding Wikipedia links (link:{commit-url}/fb35866b30f6266c540541ad6d5c71f58f8bd401[`fb35866b`]) (Gabriel Arazas)
+* Add `ctan:` inline macro for linking CTAN packages (link:{commit-url}/50a9c33f8c55925d690a29f9c3812a79c1a19087[`50a9c33f`]) (Gabriel Arazas)
+* Add `pypi:` inline macro for linking Pypi packages (link:{commit-url}/50a9c33f8c55925d690a29f9c3812a79c1a19087[`50a9c33f`]) (Gabriel Arazas)
+* Add `cratesio:` inline macro for linking crates.io packages (link:{commit-url}/50a9c33f8c55925d690a29f9c3812a79c1a19087[`50a9c33f`]) (Gabriel Arazas)
+* Add `flathub:` inline macro for Flathub packages (link:{commit-url}/ebbde1491c2a0df40938d507b28c6f958ce4fef2[`ebbde149`]) (Gabriel Arazas)
+* Add `fdroid:` inline macro for F-Droid apps (link:{commit-url}/7ddcd9be707833f2958da5e8ba839a0cfceefc92[`7ddcd9be`]) (Gabriel Arazas)
+* Add `musicbrainz:` inline macro for MusicBrainz database objects (link:{commit-url}/ca82f674af87363bda64d8e7795ce0a2b7ef2fe6[`ca82f674`]) (Gabriel Arazas)
+* Add `repology:` inline macro for Repology projects (link:{commit-url}/cef163c722c8af5fa7db2588cfbaf4b3a6fd1f55[`cef163c7`]) (Gabriel Arazas)
+* Add HTML-backend exclusive chat block.
+* Add include processor for SWHIDs (link:{commit-url}/567c52d80aafdd940e095bc8f3708ec4aa9a5097[`567c52d8`]) (Gabriel Arazas)
+* Add include processor for GitHub content (link:{commit-url}/88902f6540a67916eb9233ac5cfe174219017af4[`88902f65`]) (Gabriel Arazas)
+
+* Add include processor for GitLab content (link:{commit-url}/d03f1ca7008bb8928de0ec8538d8c110516b68f7[`d03f1ca7`]) (Gabriel Arazas)
+* Add include processor for Git blob objects (link:{commit-url}/02bebfef70d7b2424377bed497671ba1bc8be84d[`02bebfef`]) (Gabriel Arazas)
+* Add preprocessor as prerequisite for `GitBlobIncludeProcessor` (link:{commit-url}/02bebfef70d7b2424377bed497671ba1bc8be84d[`02bebfef`]) (Gabriel Arazas)
