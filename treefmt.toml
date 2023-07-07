@@ -1,0 +1,8 @@
+[formatter.nix]
+command = "nixpkgs-fmt"
+includes = [ "*.nix" ]
+
+[formatter.ruby]
+command = "rubocop"
+options = [ "-x" ]
+includes = [ "*.rb" ]
