@@ -1,0 +1,40 @@
+= asciidoctor-foodogsquared-extensions
+:toc:
+
+
+A set of link:https://asciidoctor.org/[Asciidoctor] extensions mainly for personal use of its author (foodogsquared). :)
+
+Despite being v1.0.0, treat this as almost unstable because it is only aimed for its author.
+However, feel free to leave suggestions and improvements.
+Who knows, parts of the set might develop into a more presentable and stable extension of its own.
+
+
+== Prerequisites
+
+The extension is required to be used with Ruby 3.0 and above.
+(At least until I can test and confirm it works on the previous versions.)
+
+In order to use it, you have to install it first in your Ruby environment.
+It is available as a gem in RubyGems as `asciidoctor-foodogsquared-extensions` so you can add the following line in `Gemfile`.
+
+[source, ruby]
+----
+gem 'asciidoctor-foodogsquared-extensions'
+----
+
+Somewhere in your Ruby codebase, you can just import it with the following line.
+
+[source, ruby]
+----
+require 'asciidoctor-foodogsquared-extensions'
+----
+
+And bada-bing-bada-boom, you now have the Asciidoctor extensions.
+If installed in the environment, you can now use the extension with the following Asciidoctor command.
+
+[source, shell]
+----
+asciidoctor -r asciidoctor-foodogsquared-extensions ./document.adoc
+----
+
+For now, there's no documentation for the individual macros but you can look into the README files for each macro at link:./lib/asciidoctor/[`./lib/asciidoctor/`].
