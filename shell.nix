@@ -1,17 +1,21 @@
-{ pkgs ? import <nixpkgs> { } }:
+{ pkgs ? import <nixpkgs> { }, ruby-nix }:
 
 with pkgs;
 
 let
-  gems = bundlerEnv {
+  gems = ruby-nix.lib pkgs {
     name = "asciidoctor-foodogsquared-extensions";
-    gemdir = ./.;
+    ruby = ruby_3_1;
+    gemset = ./gemset.nix;
   };
 in
 mkShell {
+  buildInputs = [
+    gems.env
+    gems.ruby
+  ];
+
   packages = [
-    gems
-    gems.wrappedRuby
     bundix
 
     # Formatters

@@ -37,7 +37,28 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "ruby-nix": "ruby-nix"
+      }
+    },
+    "ruby-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1681695382,
+        "narHash": "sha256-RBZnSdx3dnUg3o+FiQVKKeKZN6pntYb19mXnnA5b/i8=",
+        "owner": "sagittaros",
+        "repo": "ruby-nix",
+        "rev": "b1edcbec13c9f15915a900b1fb87d9c3ef1e882b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sagittaros",
+        "repo": "ruby-nix",
+        "type": "github"
       }
     },
     "systems": {
