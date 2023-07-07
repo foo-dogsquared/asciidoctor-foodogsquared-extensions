@@ -9,6 +9,8 @@ Gem::Specification.new do |s|
     doesn't allow loading Asciidoctor extensions with path separators.
   DESC
 
+  s.required_ruby_version = '>= 3.0.0'
+
   s.authors       = ['Gabriel Arazas']
   s.email         = 'foodogsquared@foodogsquared.one'
   s.metadata      = { 'source_code_uri' => 'https://github.com/foo-dogsquared/foo-dogsquared.github.io' }
