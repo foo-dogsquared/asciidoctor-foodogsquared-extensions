@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = 'asciidoctor-foodogsquared-extensions'
-  s.version       = '1.0.0'
+  s.version       = '1.0.1'
   s.licenses      = ['MIT']
   s.summary       = "foo-dogsquared's custom Asciidoctor extensions"
   s.description   = <<-DESC

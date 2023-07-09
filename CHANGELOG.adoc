@@ -8,6 +8,18 @@
 The guidelines for writing this changelog is based from link:https://common-changelog.org[Common Changelog].
 
 
+== [1.0.1] - 2023-07-09
+
+=== Updated
+
+* Update the gem metadata. (link:{commit-url}/b052cddf56397489c4eb9c7908bfbadbce2c080f[`b052cddf`]) (Gabriel Arazas)
+
+=== Fixed
+
+* Fix the `avatarstype` attribute override for the chat block extension.
+This is considered a bug since it is more intended as a project-wide attribute. (link:{commit-url}/1faf4d45ec9891532254867c219ffb5094781948[`1faf4d45`]) (Gabriel Arazas)
+
+
 == [1.0.0] - 2023-07-07
 
 The initial version of the extension set.
