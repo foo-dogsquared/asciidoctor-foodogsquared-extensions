@@ -4,18 +4,18 @@ Gem::Specification.new do |s|
   s.licenses      = ['MIT']
   s.summary       = "foo-dogsquared's custom Asciidoctor extensions"
   s.description   = <<-DESC
-    foo-dogsquared's custom Asciidoctor extensions as a Gem. This is not meant
-    to be used in production or as a public Gem. This is used since Hugo
-    doesn't allow loading Asciidoctor extensions with path separators.
+    foo-dogsquared's set of Asciidoctor extensions as a Gem. This is where I
+    implemented several pet features that will most likely never be a part of
+    Asciidoctor.
   DESC
 
   s.required_ruby_version = '>= 3.0.0'
 
   s.authors       = ['Gabriel Arazas']
   s.email         = 'foodogsquared@foodogsquared.one'
-  s.metadata      = { 'source_code_uri' => 'https://github.com/foo-dogsquared/foo-dogsquared.github.io' }
+  s.metadata      = { 'source_code_uri' => 'https://github.com/foo-dogsquared/asciidoctor-foodogsquared-extensions' }
 
-  s.files         = Dir['lib/**/*', '*.gemspec']
+  s.files         = Dir['lib/**/*', '*.gemspec', 'LICENSE', 'CHANGELOG.adoc', 'README.adoc']
 
   s.add_runtime_dependency 'asciidoctor', '~> 2.0'
   s.add_runtime_dependency 'rugged', '~> 1.0'
