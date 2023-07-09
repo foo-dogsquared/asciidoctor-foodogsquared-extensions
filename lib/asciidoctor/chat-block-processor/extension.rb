@@ -6,7 +6,7 @@ class ChatBlock < Asciidoctor::Extensions::BlockProcessor
   named :chat
   on_context :example
   name_positional_attributes 'avatar', 'state'
-  default_attributes 'state' => 'default', 'avatarstype' => 'avif'
+  default_attributes 'state' => 'default'
 
   def process(parent, reader, attrs)
     block = create_block parent, :pass, nil, attrs, content_model: :compound
@@ -23,6 +23,7 @@ class ChatBlock < Asciidoctor::Extensions::BlockProcessor
     ))
 
     attrs['avatarsdir'] ||= File.expand_path('./avatars', attrs['iconsdir'])
+    attrs['avatarstype'] ||= 'avif'
 
     avatar_sticker = "#{attrs['avatar'].to_kebab}/#{attrs['state'].to_kebab}.#{attrs['avatarstype']}"
     avatar_img_attrs = {
