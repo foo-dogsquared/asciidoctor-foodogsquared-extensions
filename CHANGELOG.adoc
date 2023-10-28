@@ -8,6 +8,37 @@
 The guidelines for writing this changelog is based from link:https://common-changelog.org[Common Changelog].
 
 
+== [1.1.0] - 2023-11-01
+
+=== Removed
+
+* Remove preprocessor extension from Git blob include processor.
+Thus, `doccontentref` document attribute has been removed. ({commit-url}/a95b09a81f623554e4e747063befcf5a14fd060e[`a95b09a`]) (Gabriel Arazas)
+
+=== Updated
+
+* Update the default behavior of several extensions where it will create a network request in all cases, not just when the caption is unset.
+It will now throw an error once it detected no object given from a service.
+These extensions are the Flathub link inline macro, the F-Droid link inline macro, and the MusicBrainz link inline macro.
+For example, `flathub:com.example.NonExistentApp[example app]` will now throw an error since the given app doesn't exist from Flathub. ({commit-url}/924fd9eac5653a14d6105bc8f27f99fabe955f98[`924fd9e`]) (Gabriel Arazas)
+
+* Revise the default text for manpages for man inline macro. ({commit-url}/928cd80561957a529551e42cad8123840aa6afa0[`928cd80`]) (Gabriel Arazas)
+
+=== Added
+
+* Add 'openbsd' option for man inline macro for easily linking manpages from https://man.openbsd.org. ({commit-url}/fcb06be49fba5d3251e6c68e5fdaf934034dcf41[`fcb06be`]) (Gabriel Arazas)
+
+* Add 'issue' option for GitLab link inline macro enabling users to link to issues from GitLab instances easily. ({commit-url}/cf8a942011cbd6b26785689d0ee4b8eff67f947e[`cf8a942`]) (Gabriel Arazas)
+
+=== Fixed
+
+* Fix the Git repo discovery processor of the Git blob include processor with `gitrepo` attribute.
+By default, it will try to discover it through the base directory of the document. ({commit-url}/a95b09a81f623554e4e747063befcf5a14fd060e[`a95b09a`]) (Gabriel Arazas)
+
+* Make the extensions inherit part of the parent's (or if possible, the document) attributes.
+This should fix some things such as setting the `avatarstype` document attribute for chat block processor extension. ({commit-url}/de3ced3d3a237870f9d57279649db71feaba975c[`de3ced3`]) (Gabriel Arazas)
+
+
 == [1.0.1] - 2023-07-09
 
 === Updated
