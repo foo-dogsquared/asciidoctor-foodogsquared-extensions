@@ -23,6 +23,9 @@ If the resulting operation ends in an error (i.e., non-existing revision, file, 
 
 == Attributes
 
+- `gitrepo` is the path to the Git repo.
+By default, it is the base directory of the document.
+
 - `path` is the filepath to be retrieved from the revision.
 When used with `diff`, it changes into a semicolon-delimited (`;`) list of files to make diffs with multiple files.
 
