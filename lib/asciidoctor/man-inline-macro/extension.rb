@@ -22,6 +22,8 @@ class ManInlineMacro < Asciidoctor::Extensions::InlineMacroProcessor
                  'https://manpages.opensuse.org'
                when 'voidlinux'
                  'https://man.voidlinux.org'
+               when 'openbsd'
+                 'https://man.openbsd.org'
                when 'none'
                  nil
                else
