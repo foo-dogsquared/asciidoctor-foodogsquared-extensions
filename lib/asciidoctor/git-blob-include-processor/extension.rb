@@ -8,7 +8,7 @@ class GitBlobIncludeProcessor < Asciidoctor::Extensions::IncludeProcessor
   end
 
   def process(doc, reader, target, attrs)
-    attrs['gitrepo'] ||= doc.base_dir
+    attrs['gitrepo'] ||= doc.attributes['gitrepo'] || doc.base_dir
     repo = Rugged::Repository.discover(attrs['gitrepo'])
 
     git_object_ref = target.delete_prefix 'git:'

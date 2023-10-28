@@ -23,7 +23,7 @@ class ChatBlock < Asciidoctor::Extensions::BlockProcessor
     ))
 
     attrs['avatarsdir'] ||= File.expand_path('./avatars', attrs['iconsdir'])
-    attrs['avatarstype'] ||= 'avif'
+    attrs['avatarstype'] ||= parent.attributes['avatarstype'] || 'avif'
 
     avatar_sticker = "#{attrs['avatar'].to_kebab}/#{attrs['state'].to_kebab}.#{attrs['avatarstype']}"
     avatar_img_attrs = {
