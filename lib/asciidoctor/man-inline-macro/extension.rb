@@ -9,8 +9,10 @@ class ManInlineMacro < Asciidoctor::Extensions::InlineMacroProcessor
 
   def process(parent, target, attrs)
     doc = parent.document
-    text = manname = target
-    suffix = (volnum = attrs['volnum']) ? %((#{volnum})) : ''
+    manname = target
+    volnum = attrs['volnum']
+
+    text = %(#{manname}(#{volnum}))
 
     if doc.basebackend? 'html'
       domain = case attrs['service']
@@ -35,13 +37,14 @@ class ManInlineMacro < Asciidoctor::Extensions::InlineMacroProcessor
         doc.register :links, target
         node = create_anchor parent, text, type: :link, target: target
       else
-        node = create_inline parent, :quoted, manname
+        node = create_inline parent, :quoted, text
       end
     elsif doc.backend == 'manpage'
-      node = create_inline parent, :quoted, manname, type: :strong
+      node = create_inline parent, :quoted, text, type: :strong
     else
-      node = create_inline parent, :quoted, manname
+      node = create_inline parent, :quoted, text
     end
-    create_inline parent, :quoted, %(#{node.convert}#{suffix})
+
+    node
   end
 end
