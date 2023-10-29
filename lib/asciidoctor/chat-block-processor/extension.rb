@@ -17,10 +17,12 @@ class ChatBlock < Asciidoctor::Extensions::BlockProcessor
     # contains two output: the dialog image of our avatar and its content.
     attrs['name'] ||= attrs['avatar']
 
-    block << (create_html_fragment block, %(
+    block << (create_html_fragment block, <<~HTML
       <div role="figure" class="dialogblock dialogblock__box dialogblock__avatar--#{attrs['avatar']} #{attrs['role']}">
         <div class="dialogblock dialogblock__avatar">
-    ))
+    HTML
+
+             )
 
     attrs['avatarsdir'] ||= File.expand_path('./avatars', attrs['iconsdir'])
     attrs['avatarstype'] ||= parent.attributes['avatarstype'] || 'avif'
@@ -33,18 +35,20 @@ class ChatBlock < Asciidoctor::Extensions::BlockProcessor
     avatar_imgblock = create_image_block block, avatar_img_attrs
 
     block << avatar_imgblock
-    block << (create_html_fragment block, %(
+    block << (create_html_fragment block, <<~HTML
         </div>
         <div class="dialogblock dialogblock__text">
           <small class="dialogblock dialogblock__avatar-name">#{attrs['name']}</small>
-    ))
+    HTML
+             )
 
     parse_content block, reader
 
-    block << (create_html_fragment block, %(
+    block << (create_html_fragment block, <<~HTML
         </div>
       </div>
-    ))
+    HTML
+             )
 
     block
   end
