@@ -23,17 +23,15 @@ class MusicBrainzLinkInlineMacro < Asciidoctor::Extensions::InlineMacroProcessor
 
       uri = %(#{root_endpoint}/#{attrs['type']}/#{target})
 
-      if attrs['caption'].nil?
-        metadata = OpenURI.open_uri(uri, headers) { |f| JSON.parse(f.read) }
-        attrs['caption'] ||= case attrs['type']
-                             when 'artist', 'area', 'events', 'genre', 'instrument', 'label', 'place', 'series'
-                               metadata['name']
-                             when 'recording', 'release-group', 'release', 'cdstub', 'work'
-                               metadata['title']
-                             when 'url'
-                               metadata['resource']
-                             end
-      end
+      metadata = OpenURI.open_uri(uri, headers) { |f| JSON.parse(f.read) }
+      attrs['caption'] ||= case attrs['type']
+                           when 'artist', 'area', 'events', 'genre', 'instrument', 'label', 'place', 'series'
+                             metadata['name']
+                           when 'recording', 'release-group', 'release', 'cdstub', 'work'
+                             metadata['title']
+                           when 'url'
+                             metadata['resource']
+                           end
 
       target = %(https://musicbrainz.org/#{attrs['type']}/#{target})
       doc.register :links, target

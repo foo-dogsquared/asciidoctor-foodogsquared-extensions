@@ -16,10 +16,8 @@ class FDroidLinkInlineMacro < Asciidoctor::Extensions::InlineMacroProcessor
     app_id = target
     app_metadata_uri = %(https://gitlab.com/fdroid/fdroiddata/-/raw/master/metadata/#{app_id}.yml)
 
-    if attrs['caption'].nil?
-      metadata = OpenURI.open_uri(app_metadata_uri) { |f| YAML.safe_load(f.read) }
-      attrs['caption'] = metadata['AutoName']
-    end
+    metadata = OpenURI.open_uri(app_metadata_uri) { |f| YAML.safe_load(f.read) }
+    attrs['caption'] ||= metadata['AutoName']
 
     url = %(https://f-droid.org/#{attrs['lang']}/packages/#{app_id})
     doc.register :links, url

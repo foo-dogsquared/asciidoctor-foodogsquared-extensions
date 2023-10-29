@@ -23,10 +23,8 @@ class FlathubLinkInlineMacro < Asciidoctor::Extensions::InlineMacroProcessor
       'User-Agent' => ::Asciidoctor::FoodogsquaredCustomExtensions::USER_AGENT
     }
 
-    if attrs['caption'].nil?
-      metadata = OpenURI.open_uri(app_metadata_uri, headers) { |f| JSON.parse(f.read) }
-      attrs['caption'] = metadata['name']
-    end
+    metadata = OpenURI.open_uri(app_metadata_uri, headers) { |f| JSON.parse(f.read) }
+    attrs['caption'] ||= metadata['name']
 
     url = %(https://flathub.org/apps/#{app_id})
     doc.register :links, url
