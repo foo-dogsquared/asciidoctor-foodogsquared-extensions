@@ -46,25 +46,11 @@ You can give the following options through `opts` attribute (i.e., `opts="diff,r
 - `reverse` reverses the sides to be compared.
 
 
-== Extra notes
-
-The extension is composed of two parts: an include processor and a preprocessor.
-
-The preprocessor add a document attribute, `doccontentref`, which it gives the Git reference for that content.
-`doccontentref` is the difference between the process working directory (`Dir.pwd`) and the base directory of the content to be converted.
-In case the process working directory is not entirely consistent for several reasons, you could give the attribute `rootdir` as the basis for the comparison.
-As another option, you could also manually set `doccontentref` in case it isn't applicable (i.e., for multilingual sites in Hugo projects).
-
-The include processor also accepts an empty target with the prefix (i.e., `include::git:[]`) as a shorthand for `include::git:{doccontentref}`.
-
-
 == Example usage
-
-The following examples assume that `doccontentref` points to `content/posts/sample`.
 
 - `include::git:HEAD[path=shell.nix]` should transclude the current iteration of `shell.nix`.
 
-- `include::git:{doccontentref}[opts="diff", path=Gemfile]` should include a diff of the Gemfile from `content/posts/sample` branch (assuming that Gemfile has changed).
+- `include::git:v1.0.0[opts="diff", path=Gemfile]` should include a diff of the Gemfile from `content/posts/sample` branch (assuming that Gemfile has changed).
 
 - `include::git:non-existing-rev[opts="diff"]` should result in a warning with the non-existing revision.
 

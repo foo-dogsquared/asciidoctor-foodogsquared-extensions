@@ -37,7 +37,6 @@ Asciidoctor::Extensions.register do
   include_processor GitLabRawIncludeProcessor
 
   include_processor GitBlobIncludeProcessor
-  preprocessor GitContentBranchAttributePreprocessor
 
   inline_macro WikipediaInlineMacro
 

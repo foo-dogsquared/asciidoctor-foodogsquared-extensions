@@ -64,17 +64,3 @@ class GitBlobIncludeProcessor < Asciidoctor::Extensions::IncludeProcessor
     reader
   end
 end
-
-class GitContentBranchAttributePreprocessor < Asciidoctor::Extensions::Preprocessor
-  def process(document, reader)
-    base_dir = Pathname.new(document.base_dir)
-    rootdir = if document.attributes['rootdir'].nil?
-                Dir.pwd
-              else
-                document.attributes['rootdir']
-              end
-
-    document.attributes['doccontentref'] = base_dir.relative_path_from(rootdir).to_s
-    reader
-  end
-end
