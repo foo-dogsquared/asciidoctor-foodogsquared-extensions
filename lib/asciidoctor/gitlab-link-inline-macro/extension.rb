@@ -20,8 +20,14 @@ class GitLabLinkInlineMacro < Asciidoctor::Extensions::InlineMacroProcessor
     text = attrs['caption'] || default_caption
     uri = URI.parse %(https://#{attrs['domain']}/#{target})
 
-    uri.path += %(/-/tree/#{attrs['rev']}) if attrs['rev']
-    uri.path += %(/#{attrs['path']}) if attrs['path']
+    if attrs.key? 'issue'
+      uri.path += %(/-/issues/#{attrs['issue']})
+      text << "##{attrs['issue']}" if text == target
+    else
+      uri.path += %(/-/tree/#{attrs['rev']}) if attrs.key? 'rev'
+      uri.path += %(/#{attrs['path']}) if attrs.key? 'path'
+      text << "@#{attrs['rev']}" if attrs.key?('rev') && text == target
+    end
 
     target = uri.to_s
 

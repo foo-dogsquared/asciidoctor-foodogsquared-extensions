@@ -23,6 +23,9 @@ By default. it doesn't point to anything which should be in the default branch o
 
 - `path` is the filepath to be linked.
 
+- `issue` is the issue to be linked from the repo.
+Take note issue has higher precedence so once `domain` and `issue` are both set, it will still link to an issue.
+
 There are settings that is enabled with the link:https://docs.asciidoctor.org/asciidoc/latest/attributes/options/[options attribute].
 
 - `repo` sets the default caption to be the repo part.
