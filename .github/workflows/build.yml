@@ -9,12 +9,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/magic-nix-action@v2
-      - uses: DeterminateSystems/nix-installer-actions@v5
+      - uses: DeterminateSystems/nix-installer-action@v6
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Release Gem
         uses: cadwallion/publish-rubygems-action@master
         env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          RUBYGEMS_API_KEY: ${{secrets.RUBYGEMS_API_KEY}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
           RELEASE_COMMAND: nix develop -c rake release
