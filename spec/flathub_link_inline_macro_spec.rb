@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe FlathubLinkInlineMacro do
+describe FlathubInlineMacro do
   it 'should create a Flathub link to Icon Library app' do
     input = 'flathub:org.gnome.design.IconLibrary[]'
 

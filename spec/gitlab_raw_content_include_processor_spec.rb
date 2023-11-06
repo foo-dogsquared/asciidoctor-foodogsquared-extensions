@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe GitLabRawIncludeProcessor, if: ENV['GITLAB_API_PERSONAL_ACCESS_TOKEN'] do
+describe GitLabIncludeProcessor, if: ENV['GITLAB_API_PERSONAL_ACCESS_TOKEN'] do
   it 'should include the GitLab CI configuration from freedesktop-sdk/freedesktop-sdk from the default instance' do
     commit = 'bcb3e0de957519e87a4c7b8c0e40af9876e531e7'
     input = <<~INPUT

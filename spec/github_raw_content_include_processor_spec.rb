@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe GitHubRawIncludeProcessor do
+describe GitHubIncludeProcessor do
   it 'should include the raw content of a GitHub file successfully' do
     input = <<~INPUT
       [literal]

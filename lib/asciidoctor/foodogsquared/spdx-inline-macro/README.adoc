@@ -1,0 +1,26 @@
+= SPDX link inline macro
+:toc:
+
+It's an inline macro for easily creating licenses from SPDX license data.
+
+
+== Synopsis
+
+[source, asciidoc]
+----
+spdx:$LICENSE_ID[$CAPTION]
+----
+
+Where...
+
+* `$LICENSE_ID` is the identifier for the license.
+
+* `$CAPTION` is the link caption to be used.
+By default, it will use the name of the license.
+
+
+== Example usage
+
+* `spdx:MIT[]` will result to the link:https://spdx.org/licenses/MIT.html[MIT license page on SPDX] with the caption `MIT License`.
+
+* `spdx:MIT[the MIT license]` is the same as the previous example but with a different caption of `the MIT license`.

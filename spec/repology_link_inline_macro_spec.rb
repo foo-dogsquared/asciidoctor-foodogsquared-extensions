@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe RepologyLinkInlineMacro do
+describe RepologyInlineMacro do
   it 'should link to the Repology page for beets' do
     input = 'repology:beets[]'
 

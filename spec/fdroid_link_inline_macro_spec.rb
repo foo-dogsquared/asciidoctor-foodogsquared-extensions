@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe FDroidLinkInlineMacro do
+describe FDroidInlineMacro do
   it 'should create a FDroid link' do
     input = 'fdroid:org.moire.ultrasonic[]'
 

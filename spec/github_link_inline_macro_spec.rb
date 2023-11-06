@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe GitHubLinkInlineMacro do
+describe GitHubInlineMacro do
   it 'should create a GitHub link with the caption being the target' do
     input = <<~INPUT
       github:foo-dogsquared/foobarbazxyz[]

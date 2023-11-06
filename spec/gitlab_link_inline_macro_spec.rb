@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe GitLabLinkInlineMacro do
+describe GitLabInlineMacro do
   it 'should link to the GitLab page for GitLab project' do
     input = 'gitlab:gitlab-org/gitlab[]'
 

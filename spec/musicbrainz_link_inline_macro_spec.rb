@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe MusicBrainzLinkInlineMacro do
+describe MusicBrainzInlineMacro do
   it 'should create a MusicBrainz release object with the right captions' do
     input = 'musicbrainz:9adcff14-7dba-4ccf-a6a6-298bcde3dd46[]'
 

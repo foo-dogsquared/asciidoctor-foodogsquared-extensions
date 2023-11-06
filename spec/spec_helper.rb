@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 require 'asciidoctor'
-require 'asciidoctor/foodogsquared-extensions'
+require 'asciidoctor-foodogsquared-extensions'
 
+include Asciidoctor::Foodogsquared::Extensions
 RSpec.configure do
   def fixtures_dir
     File.join __dir__, 'fixtures'
