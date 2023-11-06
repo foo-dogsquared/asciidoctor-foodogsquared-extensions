@@ -5,19 +5,20 @@ class ManInlineMacro < Asciidoctor::Extensions::InlineMacroProcessor
 
   named :man
   name_positional_attributes 'volnum'
-  default_attributes 'service' => 'debian'
+  default_attributes 'service' => 'debian', 'subpath' => ''
 
   def process(parent, target, attrs)
     doc = parent.document
     manname = target
-    volnum = attrs['volnum']
 
-    text = %(#{manname}(#{volnum}))
+    text = %(#{manname}(#{attrs['volnum']}))
 
     if doc.basebackend? 'html'
       domain = case attrs['service']
                when 'debian'
                  'https://manpages.debian.org'
+               when 'ubuntu'
+                 'https://manpages.ubuntu.org'
                when 'arch'
                  'https://man.archlinux.org/man'
                when 'opensuse'
@@ -33,7 +34,7 @@ class ManInlineMacro < Asciidoctor::Extensions::InlineMacroProcessor
                end
 
       if !domain.nil?
-        target = %(#{domain}/#{manname}.#{volnum})
+        target = %(#{domain}/#{attrs['subpath'].delete_prefix '/'}#{manname}.#{attrs['volnum']})
         doc.register :links, target
         node = create_anchor parent, text, type: :link, target: target
       else
