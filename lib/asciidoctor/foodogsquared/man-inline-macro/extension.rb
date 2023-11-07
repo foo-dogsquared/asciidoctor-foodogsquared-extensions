@@ -34,8 +34,9 @@ module Asciidoctor::Foodogsquared::Extensions
                    raise "no available manpage service #{attrs['service']}"
                  end
 
+        subpath = "#{attrs['subpath'].delete_prefix('/').delete_suffix('/')}/" if !attrs['subpath'].empty?
         if !domain.nil?
-          target = %(#{domain}/#{attrs['subpath'].delete_prefix '/'}#{manname}.#{attrs['volnum']})
+          target = %(#{domain}/#{subpath}#{manname}.#{attrs['volnum']})
           doc.register :links, target
           node = create_anchor parent, text, type: :link, target: target
         else
