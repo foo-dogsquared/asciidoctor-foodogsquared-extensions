@@ -6,6 +6,27 @@
 
 
 The guidelines for writing this changelog is based from link:https://common-changelog.org[Common Changelog].
+Although, this project doesn't follow the Semantic Versioning convention.
+Versioning mostly happens on a whim.
+
+
+== [1.2.0] - 2023-11-08
+
+=== Added
+
+* Add `subpath` option for man inline macro.
+This enables making links to other versions of the online manpage service such as in Debian (i.e., `man:ls[1, subpath=/bookworm]`) ({commit-url}/69c8015292ceb9fab03250109b2c5009605a9a8f[`69c8015`]) (Gabriel Arazas)
+
+* Create an extended converter for HTML5.
+This is to handle new blocks with context such as the revamped chat block. ({commit-url}/6291f3b36d44c271a66a5ad88906cb707e291b3d[`6291f3b`])
+
+=== Updated
+
+* Restructure the modules.
+There should be no difference in using unless you're using the Asciidoctor API which makes it a complete breaking change. footnote:[So far, no one is aware this extension exists so it shouldn't be. If no user uses the project, is it really a breaking change? :)] ({commit-url}/95e7bc12ecd1e573c94b1322ef1b03dec17e8c70[`95e7bc1`]) (Gabriel Arazas)
+
+* Update the chat block to have its own context.
+This makes it configurable with a template. ({commit-url}/6291f3b36d44c271a66a5ad88906cb707e291b3d[`6291f3b`]) (Gabriel Arazas)
 
 
 == [1.1.0] - 2023-11-01
