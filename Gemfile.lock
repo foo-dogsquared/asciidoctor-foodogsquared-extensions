@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    asciidoctor-foodogsquared-extensions (1.1.0)
+    asciidoctor-foodogsquared-extensions (1.2.1)
       asciidoctor (~> 2.0)
       rugged (~> 1.0)
 
@@ -71,4 +71,4 @@ DEPENDENCIES
   ruby-lsp
 
 BUNDLED WITH
-   2.4.14
+   2.4.20
