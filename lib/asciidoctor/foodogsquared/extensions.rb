@@ -5,26 +5,25 @@ require 'asciidoctor/extensions'
 
 require_relative 'helpers'
 
-require_relative 'man-inline-macro/extension'
-require_relative 'swhid-inline-macro/extension'
-require_relative 'swhid-include-processor/extension'
-require_relative 'github-inline-macro/extension'
-require_relative 'github-include-processor/extension'
-require_relative 'gitlab-inline-macro/extension'
-require_relative 'gitlab-include-processor/extension'
-require_relative 'chat-block/extension'
-require_relative 'git-blob-include-processor/extension'
-require_relative 'wikipedia-inline-macro/extension'
-require_relative 'package-indices-macro/extension'
-require_relative 'fdroid-inline-macro/extension'
-require_relative 'musicbrainz-inline-macro/extension'
-require_relative 'flathub-inline-macro/extension'
-require_relative 'repology-inline-macro/extension'
-require_relative 'ietf-rfc-inline-macro/extension'
+require_relative 'extensions/man-inline-macro'
+require_relative 'extensions/swhid-inline-macro'
+require_relative 'extensions/swhid-include-processor'
+require_relative 'extensions/github-inline-macro'
+require_relative 'extensions/github-include-processor'
+require_relative 'extensions/gitlab-inline-macro'
+require_relative 'extensions/gitlab-include-processor'
+require_relative 'extensions/chat-block'
+require_relative 'extensions/git-blob-include-processor'
+require_relative 'extensions/wikipedia-inline-macro'
+require_relative 'extensions/package-indices-macro'
+require_relative 'extensions/fdroid-inline-macro'
+require_relative 'extensions/musicbrainz-inline-macro'
+require_relative 'extensions/flathub-inline-macro'
+require_relative 'extensions/repology-inline-macro'
+require_relative 'extensions/ietf-rfc-inline-macro'
 
 include Asciidoctor::Foodogsquared::Extensions
 Asciidoctor::Extensions.register do
-
   inline_macro ManInlineMacro
   inline_macro IETFRFCInlineMacro
   block ChatBlock if @document.basebackend? 'html'
