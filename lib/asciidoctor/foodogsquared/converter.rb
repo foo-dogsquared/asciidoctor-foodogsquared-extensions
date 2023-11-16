@@ -12,16 +12,15 @@ module Asciidoctor::Foodogsquared::Converter
       attributes << %(id="#{node.id}") if node.id
       attributes << %(class="#{node.role}") if node.role
 
-      avatar_sticker = node.attributes['avatarsticker']
-      avatar_uri = node.parent.image_uri avatar_sticker, 'avatarsdir'
+      avatar_uri = node.parent.image_uri "#{node.attr 'avatarsticker'}/#{node.attr 'state'}.#{node.attr 'avatarstype'}", 'avatarsdir'
 
       <<~HTML
         <div role="figure" #{attributes.join ' '}>
           <div class="dialogblock-avatar">
-            <img src="#{avatar_uri}" alt="#{node.attributes['name']}">
+            <img src="#{avatar_uri}" alt="#{node.attributes['avatar']}">
           </div>
           <div class="dialogblock-text">
-            <small>#{node.attributes['name']}</small>
+            <small>#{node.attributes['avatar']}</small>
             #{node.content}
           </div>
         </div>

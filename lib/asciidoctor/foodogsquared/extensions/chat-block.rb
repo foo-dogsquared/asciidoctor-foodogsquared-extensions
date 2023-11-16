@@ -9,13 +9,13 @@ module Asciidoctor::Foodogsquared::Extensions
     name_positional_attributes 'avatar', 'state'
     default_attributes 'state' => 'default'
 
-    def process(parent, reader, attrs)
-      attrs['name'] ||= attrs['avatar']
+    def process(parent, _, attrs)
+      doc_attrs = parent.document.attributes
 
       # Configuring the avatar-related attributes.
-      attrs['avatarsdir'] ||= File.expand_path('./avatars', attrs['iconsdir'])
-      attrs['avatarstype'] ||= parent.attributes['avatarstype'] || 'avif'
-      attrs['avatarsticker'] = "#{attrs['avatar'].to_kebab}/#{attrs['state'].to_kebab}.#{attrs['avatarstype']}"
+      attrs['avatarsdir'] ||= doc_attrs['avatarsdir'] || File.expand_path('./avatars', attrs['iconsdir'])
+      attrs['avatarstype'] ||= doc_attrs['avatarstype'] || 'avif'
+      attrs['avatarsticker'] = attrs['avatar'].to_kebab
 
       block = create_block parent, :chat, nil, attrs, content_model: :compound
       block.add_role 'dialogblock'
