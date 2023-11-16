@@ -14,7 +14,7 @@ end
 # entirety of this project.
 module Asciidoctor::Foodogsquared
   NAME = 'asciidoctor-foodogsquared-custom-extensions'
-  VERSION = '1.2.1'
+  VERSION = '1.3.0'
   CONTACT_EMAIL = 'foodogsquared@foodogsquared.one'
   USER_AGENT = "#{NAME}/#{VERSION} ( #{CONTACT_EMAIL} )".freeze
 
