@@ -4,7 +4,7 @@
 # HTML5 converter. It features custom blocks as well as their preferred output
 # for certain blocks.
 module Asciidoctor::Foodogsquared::Converter
-  class Html5Custom < (Asciidoctor::Converter.for 'html5')
+  class Html5Extended < (Asciidoctor::Converter.for 'html5')
     register_for 'html5'
 
     def convert_chat(node)

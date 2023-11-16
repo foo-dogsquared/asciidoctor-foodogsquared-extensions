@@ -10,7 +10,7 @@ module Asciidoctor::Foodogsquared::Converters
   #
   # Take note this is only intended for the author. The user has to explicitly
   # require them somewhere to make use of this.
-  class HTML5Modified < Asciidoctor::Foodogsquared::Converter
+  class HTML5Modified < Asciidoctor::Foodogsquared::Converter::Html5Extended
     def convert_paragraph(node)
       attributes = html_attributes node
 
