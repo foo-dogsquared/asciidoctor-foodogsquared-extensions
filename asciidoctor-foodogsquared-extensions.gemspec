@@ -18,6 +18,8 @@ Gem::Specification.new do |s|
   s.files         = Dir['lib/**/*', '*.gemspec', 'LICENSE', 'CHANGELOG.adoc', 'README.adoc']
 
   s.add_runtime_dependency 'asciidoctor', '~> 2.0'
+  s.add_runtime_dependency 'mime-types', '~> 3.0'
+  s.add_runtime_dependency 'nokogiri', '~> 1.0'
   s.add_runtime_dependency 'rugged', '~> 1.0'
 
   s.add_development_dependency 'rspec', '~> 3.0'
