@@ -17,11 +17,20 @@
     in inputs.flake-utils.lib.eachSystem systems (system:
       let
         pkgs = import nixpkgs { inherit system; };
+        gems = ruby-nix.lib pkgs {
+          name = "asciidoctor-foodogsquared-extensions";
+          ruby = pkgs.ruby_3_1;
+          gemset = ./gemset.nix;
+        };
       in
       {
         devShells.default =
           import ./shell.nix {
-            inherit pkgs ruby-nix;
+            inherit pkgs;
+            extraBuildInputs = [
+              gems.env
+              gems.ruby
+            ];
             extraPackages = [
               inputs.ruby-nix-bundix.packages."${system}".default
             ];

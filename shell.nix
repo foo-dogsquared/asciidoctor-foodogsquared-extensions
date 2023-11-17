@@ -1,25 +1,18 @@
 { pkgs ? import <nixpkgs> { }
-, ruby-nix
 , extraPackages ? [ ]
 , extraBuildInputs ? [ ]
 }:
 
 with pkgs;
 
-let
-  gems = ruby-nix.lib pkgs {
-    name = "asciidoctor-foodogsquared-extensions";
-    ruby = ruby_3_1;
-    gemset = ./gemset.nix;
-  };
-in
 mkShell {
   buildInputs = [
-    gems.env
-    gems.ruby
+    # Dependencies for Nokogiri.
     pkg-config
     zlib
     libiconv
+
+    # Dependencies for rugged.
     libgit2
   ] ++ extraBuildInputs;
 
