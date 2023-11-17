@@ -38,7 +38,8 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs",
-        "ruby-nix": "ruby-nix"
+        "ruby-nix": "ruby-nix",
+        "ruby-nix-bundix": "ruby-nix-bundix"
       }
     },
     "ruby-nix": {
@@ -50,14 +51,34 @@
       "locked": {
         "lastModified": 1688825976,
         "narHash": "sha256-7EvZu+/+uNZ0kfSgQQIrRGg8RXcUN9UgRsobjbxEdBQ=",
-        "owner": "sagittaros",
+        "owner": "inscapist",
         "repo": "ruby-nix",
         "rev": "911d5e8584453e1aff0fb85c93aa163dcdd0f3f0",
         "type": "github"
       },
       "original": {
-        "owner": "sagittaros",
+        "owner": "inscapist",
         "repo": "ruby-nix",
+        "type": "github"
+      }
+    },
+    "ruby-nix-bundix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1688825865,
+        "narHash": "sha256-7HP6amLkY3u2NvPguanIW/gugUvGsmY5OMY6tKpjMrA=",
+        "owner": "inscapist",
+        "repo": "bundix",
+        "rev": "5cb01869cb09fb367c02527b1f66707fb9277076",
+        "type": "github"
+      },
+      "original": {
+        "owner": "inscapist",
+        "repo": "bundix",
         "type": "github"
       }
     },

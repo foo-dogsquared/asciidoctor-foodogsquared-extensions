@@ -5,8 +5,11 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
 
-    ruby-nix.url = "github:sagittaros/ruby-nix";
+    ruby-nix.url = "github:inscapist/ruby-nix";
     ruby-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    ruby-nix-bundix.url = "github:inscapist/bundix";
+    ruby-nix-bundix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, ruby-nix, nixpkgs, ... }:
@@ -17,7 +20,12 @@
       in
       {
         devShells.default =
-          import ./shell.nix { inherit pkgs ruby-nix; };
+          import ./shell.nix {
+            inherit pkgs ruby-nix;
+            extraPackages = [
+              inputs.ruby-nix-bundix.packages."${system}".default
+            ];
+          };
 
         formatter = pkgs.treefmt;
       });

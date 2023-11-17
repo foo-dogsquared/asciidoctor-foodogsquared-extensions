@@ -1,4 +1,8 @@
-{ pkgs ? import <nixpkgs> { }, ruby-nix }:
+{ pkgs ? import <nixpkgs> { }
+, ruby-nix
+, extraPackages ? [ ]
+, extraBuildInputs ? [ ]
+}:
 
 with pkgs;
 
@@ -13,15 +17,17 @@ mkShell {
   buildInputs = [
     gems.env
     gems.ruby
-  ];
+    pkg-config
+    zlib
+    libiconv
+    libgit2
+  ] ++ extraBuildInputs;
 
   packages = [
-    bundix
-
     # Formatters
     nixpkgs-fmt
 
     # Language servers
     rnix-lsp
-  ];
+  ] ++ extraPackages;
 }
