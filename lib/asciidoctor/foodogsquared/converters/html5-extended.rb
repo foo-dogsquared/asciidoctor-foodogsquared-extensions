@@ -105,6 +105,48 @@ module Asciidoctor::Foodogsquared::Converters
 
       html.to_html(indent: 2)
     end
+
+    # A modified version of the video block except it can accept multiple
+    # sources with the `sources` attribute. Also, much of the built-in
+    # Asciidoctor capabilities such as the ability to quickly link from YouTube
+    # are removed.
+    def convert_video(node)
+      html = Nokogiri::HTML5::DocumentFragment.parse <<~HTML
+        <figure>
+          <video></video>
+        </figure>
+      HTML
+      figure = html.first_element_child
+      video = figure.first_element_child
+
+      add_common_attributes node, figure
+      add_boolean_attribute node, video, %w[loop controls muted]
+      add_attributes_from_node node, video, %w[width height]
+
+      if node.attr? 'sources'
+        _, sources = add_sources_elem node, video, 'video'
+
+        sources_download_links = sources.map do |src|
+          %(<a href="#{src}">#{src}</a>)
+        end
+        fallback_text = html.document.parse "Download the video at #{sources_download_links.join ', '}."
+      else
+        video['src'] = node.attr 'target'
+        fallback_text = html.document.parse "Download the video at #{node.attr 'target'}."
+      end
+
+      video.add_child fallback_text
+
+      if node.title?
+        html.document.create_element 'figcaption' do |block|
+          block.inner_html = node.captioned_title
+          figure.add_child block
+        end
+      end
+
+      html.to_html(indent: 2)
+    end
+
     def add_common_attributes(node, html)
       html['id'] = node.id if node.id
       html.add_class node.role unless node.role.nil?

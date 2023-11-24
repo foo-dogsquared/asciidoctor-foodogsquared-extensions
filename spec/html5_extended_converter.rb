@@ -66,6 +66,54 @@ describe Asciidoctor::Foodogsquared::Converters::HTML5Modified do
     (expect actual).to eq expected.chomp
   end
 
+  it 'should have a video block with multiple <source>' do
+    input = <<~INPUT
+      video::hello.mp4[sources="hello.mp4,hello.webm"]
+    INPUT
+
+    expected = <<~HTML
+      <figure>
+        <video><source src="hello.mp4" type="video/mp4"><source src="hello.webm" type="video/webm"><p>Download the video at <a href="hello.mp4">hello.mp4</a>, <a href="hello.webm">hello.webm</a>.</p></video>
+      </figure>
+    HTML
+
+    actual = (Asciidoctor.convert input).chomp
+    (expect actual).to eq expected.chomp
+  end
+
+  it 'should have a video block with multiple <source> and a caption' do
+    input = <<~INPUT
+      .Making up stuff right now
+      video::./hello.mp4[sources="hello.mp4,hello.webm"]
+    INPUT
+
+    expected = <<~HTML
+      <figure>
+        <video><source src="hello.mp4" type="video/mp4"><source src="hello.webm" type="video/webm"><p>Download the video at <a href="hello.mp4">hello.mp4</a>, <a href="hello.webm">hello.webm</a>.</p></video>
+      <figcaption>Making up stuff right now</figcaption></figure>
+    HTML
+
+    actual = (Asciidoctor.convert input).chomp
+    (expect actual).to eq expected.chomp
+  end
+
+  it 'should have a video block with a caption, ID, and classes' do
+    input = <<~INPUT
+      [#video-sample.reverse]
+      .Making up stuff right now
+      video::./hello.mp4[sources="hello.mp4,hello.webm"]
+    INPUT
+
+    expected = <<~HTML
+      <figure id="video-sample" class="reverse">
+        <video><source src="hello.mp4" type="video/mp4"><source src="hello.webm" type="video/webm"><p>Download the video at <a href="hello.mp4">hello.mp4</a>, <a href="hello.webm">hello.webm</a>.</p></video>
+      <figcaption>Making up stuff right now</figcaption></figure>
+    HTML
+
+    actual = (Asciidoctor.convert input).chomp
+    (expect actual).to eq expected.chomp
+  end
+
   it 'should have an audio block with multiple <source>' do
     input = <<~INPUT
       audio::hello.mp3[sources="hello.mp3,hello.webm"]
