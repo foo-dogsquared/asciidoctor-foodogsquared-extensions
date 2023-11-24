@@ -8,10 +8,7 @@ module Asciidoctor::Foodogsquared::Converter
     register_for 'html5'
 
     def convert_chat(node)
-      attributes = []
-      attributes << %(id="#{node.id}") if node.id
-      attributes << %(class="#{node.role}") if node.role
-
+      attributes = add_attributes node
       avatar_uri = node.parent.image_uri "#{node.attr 'avatarsticker'}/#{node.attr 'state'}.#{node.attr 'avatarstype'}", 'avatarsdir'
 
       <<~HTML
@@ -25,6 +22,14 @@ module Asciidoctor::Foodogsquared::Converter
           </div>
         </div>
       HTML
+    end
+
+    def add_attributes(node)
+      attributes = []
+      attributes << %(id="#{node.id}") if node.id
+      attributes << %(class="#{node.role}") if node.role
+
+      attributes
     end
   end
 end
