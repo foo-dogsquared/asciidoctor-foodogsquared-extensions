@@ -219,6 +219,21 @@ describe Asciidoctor::Foodogsquared::Converters::HTML5Modified do
     (expect actual).to eq expected.chomp
   end
 
+  it 'should have a video block with a bunch of attributes' do
+    input = <<~INPUT
+      video::hello.mp4[opts="autoplay,loop", preload="metadata"]
+    INPUT
+
+    expected = <<~HTML
+      <figure>
+        <video autoplay="autoplay" loop="loop" preload="metadata" src="hello.mp4"><p>Download the video at <a href="hello.mp4">hello.mp4</a>.</p></video>
+      </figure>
+    HTML
+
+    actual = (Asciidoctor.convert input).chomp
+    (expect actual).to eq expected.chomp
+  end
+
   it 'should have a video block with multiple <source> and a caption' do
     input = <<~INPUT
       .Making up stuff right now
