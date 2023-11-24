@@ -14,6 +14,8 @@ Who knows, parts of the set might develop into a more presentable and stable ext
 The extension is required to be used with Ruby 3.0 and above.
 (At least until I can test and confirm it works on the previous versions.)
 
+For now, it explicitly supports CRuby and that's it. footnote:[Mainly due to Nokogiri but I'll look for other HTML processors.]
+
 In order to use it, you have to install it first in your Ruby environment.
 It is available as a gem in RubyGems as `asciidoctor-foodogsquared-extensions` so you can add the following line in `Gemfile`.
 
