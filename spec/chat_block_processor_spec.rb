@@ -89,4 +89,36 @@ describe ChatBlock do
     actual = (Asciidoctor.convert input).tr_s '\n', '\n'
     (expect actual).to include expected.chomp
   end
+
+  it 'should create a basic chat block with non-default values from the document' do
+    input = <<~INPUT
+      [chat, foodogsquared, state=nervous, role=shake]
+      ====
+      Hello there!
+
+      *wow*
+      ====
+    INPUT
+
+    expected = <<~RESULT
+      <div role="figure" class="shake dialogblock">
+        <div class="dialogblock-avatar">
+          <img src="/avatars/foodogsquared/nervous.hello" alt="foodogsquared">
+        </div>
+        <div class="dialogblock-text">
+          <small>foodogsquared</small>
+          <div class="paragraph">
+      <p>Hello there!</p>
+      </div>
+      <div class="paragraph">
+      <p><strong>wow</strong></p>
+      </div>
+        </div>
+      </div>
+    RESULT
+
+    attributes = { 'avatarstype' => 'hello', 'avatarsdir' => '/avatars' }
+    actual = (Asciidoctor.convert input, attributes: attributes).tr_s '\n', '\n'
+    (expect actual).to include expected.chomp
+  end
 end
