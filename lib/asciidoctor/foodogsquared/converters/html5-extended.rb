@@ -67,6 +67,22 @@ module Asciidoctor::Foodogsquared::Converters
       html.to_html(indent: 2)
     end
 
+    def convert_sidebar(node)
+      html = Nokogiri::XML::DocumentFragment.parse '<aside></aside>'
+      aside = html.first_element_child
+      add_common_attributes node, aside
+
+      if node.title?
+        html.document.create_element 'strong' do |strong|
+          strong.add_class 'title'
+          strong.content = node.captioned_title
+          aside.add_child strong
+        end
+      end
+
+      aside.inner_html += node.content
+      html.to_html(indent: 2)
+    end
 
     # A modified version of the audio node except it can accept multiple
     # sources.
