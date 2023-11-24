@@ -1,5 +1,5 @@
 {
-  description = "Basic flake template for setting up development shells";
+  description = "Flake for setting up asciidoctor-foodogsquared-extensions";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
