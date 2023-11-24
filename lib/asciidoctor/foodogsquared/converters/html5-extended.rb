@@ -30,6 +30,42 @@ module Asciidoctor::Foodogsquared::Converters
       html.to_html
     end
 
+    def convert_admonition(node)
+      html = Nokogiri::XML::DocumentFragment.parse '<aside></aside>'
+
+      aside = html.first_element_child
+      aside['data-admonition-type'] = node.attr 'name'
+
+      add_common_attributes node, aside
+
+      if node.document.attr? 'icons', 'image'
+        html.document.create_element 'svg' do |svg|
+          html.document.create_element 'use' do |use|
+            use['href'] = "#{node.image_uri "#{node.attr 'name'}.svg", 'iconsdir'}##{node.attr 'name'}"
+            use['alt'] = node.attr 'textlabel'
+            svg.add_child use
+          end
+          aside.add_child svg
+        end
+      else
+        html.document.create_element 'div' do |div|
+          div.add_class 'admonition-label'
+          div.content = node.attr 'textlabel'
+          aside.add_child div
+        end
+      end
+
+      if node.title?
+        html.document.create_element 'strong', class: 'title' do |strong|
+          strong.add_class 'title'
+          strong.content = node.captioned_title
+          aside.add_child strong
+        end
+      end
+
+      aside.inner_html += node.content
+      html.to_html(indent: 2)
+    end
 
     def add_common_attributes(node, html)
       html['id'] = node.id if node.id
