@@ -148,7 +148,8 @@ module Asciidoctor::Foodogsquared::Converters
         fallback_text = html.document.parse "Download the video at #{sources_download_links.join ', '}."
       else
         video['src'] = node.attr 'target'
-        fallback_text = html.document.parse "Download the video at #{node.attr 'target'}."
+        link = %(<a href="#{node.attr 'target'}">#{node.attr 'target'}</a>)
+        fallback_text = html.document.parse "Download the video at #{link}."
       end
 
       video.add_child fallback_text
