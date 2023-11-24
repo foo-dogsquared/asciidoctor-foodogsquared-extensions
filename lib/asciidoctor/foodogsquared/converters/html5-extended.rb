@@ -136,8 +136,8 @@ module Asciidoctor::Foodogsquared::Converters
       video = figure.first_element_child
 
       add_common_attributes node, figure
-      add_boolean_attribute node, video, %w[loop controls muted]
-      add_attributes_from_node node, video, %w[width height]
+      add_boolean_attribute node, video, %w[autoplay loop controls muted]
+      add_attributes_from_node node, video, %w[width height poster preload]
 
       if node.attr? 'sources'
         _, sources = add_sources_elem node, video, 'video'
