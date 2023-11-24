@@ -67,11 +67,82 @@ module Asciidoctor::Foodogsquared::Converters
       html.to_html(indent: 2)
     end
 
+
+    # A modified version of the audio node except it can accept multiple
+    # sources.
+    def convert_audio(node)
+      html = Nokogiri::HTML5::DocumentFragment.parse <<~HTML
+        <figure>
+          <audio></audio>
+        </figure>
+      HTML
+      figure = html.first_element_child
+      audio = figure.first_element_child
+
+      add_common_attributes node, figure
+      add_boolean_attribute node, audio, %w[loop controls muted]
+
+      if node.attr? 'sources'
+        _, sources = add_sources_elem node, audio, 'audio'
+
+        sources_download_links = sources.map do |src|
+          %(<a href="#{src}">#{src}</a>)
+        end
+        fallback_text = html.document.parse "Download the audio at #{sources_download_links.join ', '}."
+      else
+        audio['src'] = node.attr 'target'
+        fallback_text = html.document.parse "Download the audio at #{node.attr 'target'}."
+      end
+
+      audio.add_child fallback_text
+
+      if node.title?
+        html.document.create_element 'figcaption' do |block|
+          block.inner_html = node.captioned_title
+          figure.add_child block
+        end
+      end
+
+      html.to_html(indent: 2)
+    end
     def add_common_attributes(node, html)
       html['id'] = node.id if node.id
-      html['class'] = node.role if node.role
+      html.add_class node.role unless node.role.nil?
 
       html
+    end
+
+    def add_attributes_from_node(node, html, options)
+      options.each do |option|
+        html[option] = node.attr option if node.attr? option
+      end
+
+      html
+    end
+
+    def add_boolean_attribute(node, html, options)
+      options.each do |option|
+        html[option] = option if node.option? option
+      end
+
+      html
+    end
+
+    def add_sources_elem(node, html, media_type)
+      sources = node.attr('sources', '').split(',').each do |src|
+        src = html.document.create_element 'source' do |block|
+          block['src'] = src
+
+          type = MIME::Types.type_for(src).find do |mime|
+            mime.media_type == media_type
+          end
+          block['type'] = type unless media_type.nil?
+        end
+
+        html.add_child src
+      end
+
+      [html, sources]
     end
   end
 end
