@@ -84,6 +84,56 @@ module Asciidoctor::Foodogsquared::Converters
       html.to_html(indent: 2)
     end
 
+    def convert_image(node)
+      html = Nokogiri::HTML5::DocumentFragment.parse <<~HTML
+        <figure>
+          <picture></picture>
+        </figure>
+      HTML
+      figure = html.first_element_child
+      picture = figure.first_element_child
+
+      add_common_attributes node, figure
+      node.attr?('sources') && add_sources_elem(node, picture, 'image')
+
+      target = node.attr 'target'
+      if (node.attr?('format', 'svg') || target.end_with?('.svg'))
+        if node.option? 'inline'
+          reader_opts = {
+            start: node.document.attr('imagesdir'),
+            normalize: true,
+            label: 'SVG',
+            warn_if_empty: true
+          }
+          figure.inner_html = node.read_contents target, reader_opts
+        elsif node.option? 'interactive'
+          picture.unlink
+          html.document.create_element 'object' do |object|
+            node.attr?('fallback') && object.add_child(add_img_elem(node, html))
+
+            add_attributes_from_node node, object, %w[width height]
+            object['type'] = 'image/svg+xml'
+            object['data'] = node.image_uri target
+
+            figure.add_child object
+          end
+        else
+          picture.add_child(add_img_elem(node, html))
+        end
+      else
+        picture.add_child(add_img_elem(node, html))
+      end
+
+      if node.title?
+        html.document.create_element 'figcaption' do |block|
+          block.inner_html = node.captioned_title
+          figure.add_child block
+        end
+      end
+
+      html.to_html(indent: 2)
+    end
+
     # A modified version of the audio node except it can accept multiple
     # sources.
     def convert_audio(node)
@@ -188,9 +238,10 @@ module Asciidoctor::Foodogsquared::Converters
     end
 
     def add_sources_elem(node, html, media_type)
+      src_attr = html.name == 'picture' ? 'srcset' : 'src'
       sources = node.attr('sources', '').split(',').each do |src|
         src = html.document.create_element 'source' do |block|
-          block['src'] = src
+          block[src_attr] = src
 
           type = MIME::Types.type_for(src).find do |mime|
             mime.media_type == media_type
@@ -202,6 +253,14 @@ module Asciidoctor::Foodogsquared::Converters
       end
 
       [html, sources]
+    end
+
+    def add_img_elem(node, html)
+      html.document.create_element 'img' do |img|
+        add_attributes_from_node node, img, %w[width height]
+        img['src'] = node.attr 'target'
+        img['alt'] = node.alt
+      end
     end
   end
 end
